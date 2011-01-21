@@ -101,6 +101,7 @@ sub component {
         $service = Bread::Board::ConstructorInjection->new(
             name         => $name,
             class        => $service_val,
+            lifecycle    => 'Singleton',
             dependencies => \%params,
         );
     }
@@ -108,6 +109,7 @@ sub component {
         $service = Bread::Board::BlockInjection->new(
             name         => $name,
             block        => $service_val,
+            lifecycle    => 'Singleton',
             dependencies => \%params,
         );
     }
