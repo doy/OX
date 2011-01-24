@@ -82,6 +82,10 @@ sub component {
 
     my $service = _parse_service_sugar('class', @_);
     $meta->add_component($service);
+    my $name = $service->name;
+    $meta->add_method(
+        $name => sub { shift->resolve(service => "/Component/$name") }
+    ) unless $meta->has_method($name);
 }
 
 sub config {
@@ -89,6 +93,10 @@ sub config {
 
     my $service = _parse_service_sugar('value', @_);
     $meta->add_config($service);
+    my $name = $service->name;
+    $meta->add_method(
+        $name => sub { shift->resolve(service => "/Config/$name") }
+    ) unless $meta->has_method($name);
 }
 
 sub _parse_service_sugar {

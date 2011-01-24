@@ -68,6 +68,11 @@ sub BUILD {
     };
 }
 
+sub app_root   { shift->resolve(service => '/app_root') }
+# XXX: ugh, would like to just call this 'router', but it conflicts with the
+# sugar function of that name. perl--
+sub app_router { shift->resolve(service => '/Router')   }
+
 sub router_dependencies { [] }
 sub configure_router {
     my ($self, $s, $router) = @_;
